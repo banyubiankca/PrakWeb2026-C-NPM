@@ -1,7 +1,9 @@
 import React from "react";
 import KartuProfil from "./KartuProfil";
+import PortoMini from "./PortoMini";
+
 function App() {
-  // 1. Data daftar mata kuliah praktikum semester ini
+  // 1. Data daftar mata kuliah praktikum
   const daftarPraktikum = [
     {
       id: 101,
@@ -32,12 +34,60 @@ function App() {
       hari: "Jumat",
     },
   ];
-  // 2. Fungsi penanganan interaksi event tombol
+
+  // 2. Fungsi tombol interaktivitas
   const notifikasiSapaan = () => {
     alert(
-      "Selamat datang di Modul 1! Anda berhasil menguasai fondasi arsitektur React JS.",
+      "Selamat datang di Modul 1! Anda berhasil menguasai fondasi arsitektur React JS."
     );
   };
+
+  // 3. Data daftar proyek portofolio
+  const daftarProyek = [
+    {
+      id: 1,
+      judul: "Website Warmindo 21",
+      deskripsi:
+        "Website pemesanan dan informasi menu makanan serta minuman pada Warmindo 21.",
+      teknologi: ["HTML", "CSS", "PHP", "MySQL"],
+      github:
+        "https://github.com/banyubiankca/pw2025_tubes_243040085.git",
+    },
+    {
+      id: 2,
+      judul: "Website Company Profile",
+      deskripsi:
+        "Website profil perusahaan yang menampilkan informasi tentang perusahaan, layanan, dan tim.",
+      teknologi: ["CSS", "HTML"],
+      github:
+        "https://github.com/banyubiankca/ITW2024_Project2_243040085.git",
+    },
+    {
+      id: 3,
+      judul: "Website Portofolio",
+      deskripsi:
+        "Website pribadi yang menampilkan profil, kemampuan, dan kumpulan proyek yang telah dibuat.",
+      teknologi: ["Script JS", "HTML", "CSS"],
+      github:
+        "https://github.com/banyubiankca/ITW2024_Project1_243040085.git",
+    },
+    {
+      id: 4,
+      judul: "Showcase Portofolio Mini",
+      deskripsi:
+        "Website yang menampilkan kumpulan proyek dan kemampuan dalam bidang pemrograman web.",
+      teknologi: ["React JS", "HTML", "CSS"],
+      github:
+        "https://github.com/banyubiankca/PrakWeb2026-C-NPM.git",
+    },
+  ];
+
+  // 4. Fungsi tombol GitHub
+  const bukaGithub = (link) => {
+    window.open(link, "_blank", "noopener,noreferrer");
+  };
+
+  // 5. Tampilan utama
   return (
     <div
       style={{
@@ -55,16 +105,13 @@ function App() {
           Laboratorium Informatika - Modul 1: Pengenalan React JS & Vite
         </p>
       </header>
+
+      {/* Profil Mahasiswa */}
       <section style={{ marginBottom: "32px" }}>
-        <h2
-          style={{
-            color: "#2C3E50",
-            borderBottom: "2px solid #E1E4E8",
-            paddingBottom: "8px",
-          }}
-        >
+        <h2 style={{ color: "#2C3E50" }}>
           Profil Mahasiswa Praktikan
         </h2>
+
         <KartuProfil
           nama="Mahasiswa Informatika"
           npm="233040000"
@@ -73,16 +120,13 @@ function App() {
           fotoUrl="https://via.placeholder.com/80"
         />
       </section>
+
+      {/* Daftar Praktikum */}
       <section style={{ marginBottom: "32px" }}>
-        <h2
-          style={{
-            color: "#2C3E50",
-            borderBottom: "2px solid #E1E4E8",
-            paddingBottom: "8px",
-          }}
-        >
+        <h2 style={{ color: "#2C3E50" }}>
           Daftar Rencana Praktikum Semester (List Rendering)
         </h2>
+
         <div style={{ display: "grid", gap: "12px" }}>
           {daftarPraktikum.map((matkul) => (
             <div
@@ -102,16 +146,12 @@ function App() {
                   {matkul.kode}
                 </span>{" "}
                 - {matkul.nama}
-                <div
-                  style={{
-                    fontSize: "12px",
-                    color: "#777",
-                    marginTop: "4px",
-                  }}
-                >
+
+                <div style={{ fontSize: "12px", color: "#777", marginTop: "4px" }}>
                   Jadwal Sesi: {matkul.hari}
                 </div>
               </div>
+
               <span
                 style={{
                   backgroundColor: "#E1E4E8",
@@ -126,6 +166,8 @@ function App() {
           ))}
         </div>
       </section>
+
+      {/* Tombol Interaktivitas */}
       <div style={{ textAlign: "center", marginTop: "40px" }}>
         <button
           onClick={notifikasiSapaan}
@@ -143,7 +185,14 @@ function App() {
           Uji Interaktivitas Event (Klik Disini)
         </button>
       </div>
+
+      {/* Showcase Portofolio Mini */}
+      <PortoMini
+        daftarProyek={daftarProyek}
+        bukaGithub={bukaGithub}
+      />
     </div>
   );
 }
+
 export default App;
